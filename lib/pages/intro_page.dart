@@ -8,19 +8,19 @@ class IntroPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Column(   //Column includes widgets (image+text+button)
         children: [
           Padding(
             padding: const EdgeInsets.only(
               left: 80, right: 80, top: 120,
             ),
-            child: Image.asset('lib/images/milk.png'),
+            child: Image.asset('lib/images/milk.png'),  //a beautiful logo of milk
           ),
 
           Padding(
             padding: const EdgeInsets.all(24.0),
             child: Text(
-              "We deliver groceries at your doorstep",
+              "We deliver groceries at your doorstep", //intro title
               textAlign: TextAlign.center,
               style: GoogleFonts.notoSerif(
                 fontSize: 36,
@@ -29,7 +29,7 @@ class IntroPage extends StatelessWidget {
                 ),
           ),
 
-          const SizedBox(height: 24,),
+          const SizedBox(height: 24,),  //spacing with fixed height
 
           Text(
             "Fresh items everyday",
@@ -38,13 +38,16 @@ class IntroPage extends StatelessWidget {
             ),
           ),
 
-          const Spacer(),
+          const Spacer(), //to space evenly
 
+          //a button to enter the home page
           GestureDetector(
+            //function to navigate to home page
             onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(
               builder:(context) {
-                return HomePage();
+                return const HomePage();
               },)),
+            //design of the button
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.deepPurple,
@@ -57,7 +60,7 @@ class IntroPage extends StatelessWidget {
             ),
           ),
 
-          const Spacer(),
+          const Spacer(), //to space evenly
         ],
       ),
     );
