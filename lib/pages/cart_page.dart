@@ -41,6 +41,27 @@ class CartPage extends StatelessWidget {
                     );
                   },
                 )
+              ),
+
+              // pay + total price
+
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Container(
+                  height: 64,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(12)
+                  ),
+                  child: Text(
+                    "Pay now: "+value.calculateTotalPrice(),
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white
+                    ),
+                    ),
+                ),
               )
             ],
           );
