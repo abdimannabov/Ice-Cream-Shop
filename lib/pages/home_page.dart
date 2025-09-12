@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/components/grocery_item_tile.dart';
 import 'package:flutter_app/model/cart_model.dart';
+import 'package:flutter_app/pages/cart_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton:FloatingActionButton.large(
+        onPressed:() => Navigator.push(context, 
+          MaterialPageRoute(builder:(context) {
+            return CartPage();
+          },)),
+        shape: CircleBorder(),
+        backgroundColor: Colors.greenAccent,
+        child: Icon(Icons.shopping_bag,
+          color: Colors.redAccent,
+          size: 48,
+          ),
+        ),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,6 +78,9 @@ class HomePage extends StatelessWidget {
                         itemPrice: value.shopItems[index][1],
                         itemPath: value.shopItems[index][2],
                         color: value.shopItems[index][3],
+                        onPressed: () {
+                          Provider.of<CartModel>(context, listen: false).addItemToCart(index);
+                        },
                       );
                     },
                   );
