@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "176017349108",
+    "project_id": "ice-cream-shop-67d2f",
+    "storage_bucket": "ice-cream-shop-67d2f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:176017349108:android:a6f63e2796c1eca4f2c1a1",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAyGCD56onlT14zgAmRQGaXsEwp5GZkLo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

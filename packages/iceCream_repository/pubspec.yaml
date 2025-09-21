@@ -1,0 +1,22 @@
+name: iceCream_repository
+description: The repo handles ice-creams
+publish_to: "none"
+version: 0.0.1
+
+environment:
+  sdk: ">=3.2.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  equatable: ^2.0.5
+  firebase_auth: ^6.0.1
+  cloud_firestore: ^6.0.0
+  rxdart: ^0.27.7
+  path: ^1.8.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
