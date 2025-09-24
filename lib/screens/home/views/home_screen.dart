@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/authentication/blocs/sign_in_bloc/sign_in_bloc.dart';
+import 'package:flutter_app/screens/home/views/details_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -26,7 +27,11 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.cart)),
+          IconButton(
+            onPressed: () {
+              
+            }, 
+            icon: Icon(CupertinoIcons.cart)),
           IconButton(
             onPressed: () {
               context.read<SignInBloc>().add(SignOutRequired());
@@ -52,7 +57,12 @@ class HomeScreen extends StatelessWidget {
             ),
             child: InkWell(
               onTap: () {
-                
+                Navigator.push(
+                context, 
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => const DetailsScreen(),
+                ),
+              );
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
