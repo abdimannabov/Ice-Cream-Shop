@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/screens/authentication/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:flutter_app/screens/home/views/details_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../components/ice_cream_card.dart';
+import '../../../data/ice_cream_data.dart';
+import '../../../models/ice_cream.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,10 +18,11 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.pinkAccent.shade100,
         title: Row(
           children: [
-            Image.asset('assets/logo.png', 
+            Image.asset(
+              'assets/logo.png', // Assuming logo.png exists
               height: 50,
               width: 50,
-              scale: 3
+              scale: 3,
             ),
             SizedBox(width: 8),
             Text(
@@ -30,9 +34,10 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              
-            }, 
-            icon: Icon(CupertinoIcons.cart)),
+              // Handle cart action
+            },
+            icon: Icon(CupertinoIcons.cart),
+          ),
           IconButton(
             onPressed: () {
               context.read<SignInBloc>().add(SignOutRequired());
@@ -41,146 +46,123 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          childAspectRatio: 9 / 17,
-        ),
-        itemCount: 8,
-        itemBuilder: (context, int i) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Material(
-              elevation: 3,
-              color: Colors.pink.shade50,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusGeometry.circular(24),
-              ),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                  context, 
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const DetailsScreen(),
-                  ),
-                );
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset('assets/8.png',
-                      width: 220,
-                      height: 220,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Row(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.pinkAccent,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 4.0,
-                                vertical: 6,
-                              ),
-                              child: Text(
-                                "Strawberry",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 8),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.blue.shade100,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 4.0,
-                                vertical: 6,
-                              ),
-                              child: Text(
-                                "Pure Milk",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Text(
-                        "Vanilla Ice-Cream",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Text(
-                        "Very delicious Ice-Cream with fruits!",
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey.shade700
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Text(
-                                "\$8.00",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.green.shade600,
-                                ),
-                              ),
-                              SizedBox(width: 5,),
-                              Text(
-                                "\$10.00",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey.shade500,
-                                  decoration: TextDecoration.lineThrough
-                                ),
-                              )
-                            ],
-                          ),
-                          IconButton(
-                            onPressed: (){}, 
-                            icon: Icon(CupertinoIcons.add_circled_solid)
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+      body: ListView(
+        children: [
+          SizedBox(height: 5,),
+          ClipRRect(
+            borderRadius: BorderRadiusGeometry.circular(24),
+            child: Image.asset(
+              'assets/discount.png',
+               width: double.infinity,
+               height: 200,
+               fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(height: 5,),
+          // HomePage widget
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // MILK Category
+              const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  "Milk",
+                  style: TextStyle(
+                    fontSize: 32, 
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
                 ),
               ),
-            ),
-          );
-        },
+              SizedBox(
+                height: 450, // same as your GridView height
+                child: GridView.builder(
+                  scrollDirection: Axis.horizontal,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    childAspectRatio: 2,
+                  ),
+                  itemCount: iceCreamList
+                      .where((ic) => ic.macros.any((m) => m.title == "Milk"))
+                      .length,
+                  itemBuilder: (context, i) {
+                    final milkList = iceCreamList
+                        .where((ic) => ic.macros.any((m) => m.title == "Milk"))
+                        .toList();
+                    final iceCream = milkList[i];
+
+                    // 👉 your existing card code (DON’T change design)
+                    return YourIceCreamCard(iceCream: iceCream);
+                  },
+                ),
+              ),
+
+              // CHOCOLATE Category
+              const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  "Chocolate",
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(
+                height: 450,
+                child: GridView.builder(
+                  scrollDirection: Axis.horizontal,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    childAspectRatio: 2,
+                  ),
+                  itemCount: iceCreamList
+                      .where((ic) => ic.macros.any((m) => m.title == "Chocolate"))
+                      .length,
+                  itemBuilder: (context, i) {
+                    final chocoList = iceCreamList
+                        .where((ic) => ic.macros.any((m) => m.title == "Chocolate"))
+                        .toList();
+                    final iceCream = chocoList[i];
+
+                    return YourIceCreamCard(iceCream: iceCream);
+                  },
+                ),
+              ),
+
+              // FRUITS Category
+              const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  "Fruits",
+                  style: TextStyle(fontSize: 32, 
+                  fontWeight: FontWeight.bold,
+                  color: Colors.pink
+                ),
+                ),
+              ),
+              SizedBox(
+                height: 450,
+                child: GridView.builder(
+                  scrollDirection: Axis.horizontal,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    childAspectRatio: 2,
+                  ),
+                  itemCount: iceCreamList
+                      .where((ic) => ic.macros.any((m) => m.title == "Fruits"))
+                      .length,
+                  itemBuilder: (context, i) {
+                    final fruitList = iceCreamList
+                        .where((ic) => ic.macros.any((m) => m.title == "Fruits"))
+                        .toList();
+                    final iceCream = fruitList[i];
+
+                    return YourIceCreamCard(iceCream: iceCream);
+                  },
+                ),
+              ),
+            ],
+          ),
+        
+        ],
       ),
     );
   }
